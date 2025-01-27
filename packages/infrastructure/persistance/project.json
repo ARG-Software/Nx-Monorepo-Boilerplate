@@ -1,0 +1,16 @@
+{
+  "name": "persistance",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/infrastructure/persistance/src",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/infrastructure/persistance/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

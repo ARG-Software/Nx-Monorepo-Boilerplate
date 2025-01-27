@@ -1,0 +1,9 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
+  <!-- Graphic Element -->
+  <circle cx="100" cy="50" r="40" fill="#e0e0e0" />
+  <!-- Text Element -->
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#333">
+    Admin
+  </text>
+</svg>

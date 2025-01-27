@@ -1,0 +1,43 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@nx-template/application": ["packages/application/src/index.ts"],
+      "@nx-template/bull": ["packages/infrastructure/bull/src/index.ts"],
+      "@nx-template/cache": ["packages/infrastructure/cache/src/index.ts"],
+      "@nx-template/configuration": [
+        "packages/infrastructure/configuration/src/index.ts"
+      ],
+      "@nx-template/cronjob": ["packages/infrastructure/cronjob/src/index.ts"],
+      "@nx-template/crypto": ["packages/shared/crypto/src/index.ts"],
+      "@nx-template/domain": ["packages/domain/src/index.ts"],
+      "@nx-template/dtos": ["packages/shared/dtos/src/index.ts"],
+      "@nx-template/email": ["packages/infrastructure/email/src/index.ts"],
+      "@nx-template/exchanges": ["packages/shared/exchanges/src/index.ts"],
+      "@nx-template/health": ["packages/infrastructure/health/src/index.ts"],
+      "@nx-template/log": ["packages/infrastructure/log/src/index.ts"],
+      "@nx-template/messaging": [
+        "packages/infrastructure/messaging/src/index.ts"
+      ],
+      "@nx-template/persistance": [
+        "packages/infrastructure/persistance/src/index.ts"
+      ],
+      "@nx-template/utils": ["packages/shared/utils/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

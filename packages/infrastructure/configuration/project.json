@@ -1,0 +1,16 @@
+{
+  "name": "configuration",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/infrastructure/configuration/src",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/infrastructure/configuration/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,85 @@
+{
+  "name": "frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/frontend",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "defaultConfiguration": "development",
+      "executor": "@nx/next:build",
+      "options": {
+        "root": "apps/frontend"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/frontend/dist/development",
+          "debug": true
+        },
+        "production": {
+          "outputPath": "apps/frontend/dist/production",
+          "generateLockfile": true,
+          "includeDevDependenciesInPackageJson": true
+        }
+      },
+      "dependsOn": ["clean-dist"]
+    },
+
+    "clean-dist": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "production": {
+          "commands": ["echo 'Cleaning dist production'", "rm -rf apps/frontend/dist/production"]
+        },
+        "development": {
+          "commands": ["echo 'Cleaning dist development'", "rm -rf apps/frontend/dist/development"]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend:build:development",
+          "dev": true,
+          "port": 8081,
+          "experimentalHttps": true
+        }
+      }
+    },
+    "versioning": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "HEAD:main",
+        "syncVersions": false,
+        "noVerify": false,
+        "push": true,
+        "remote": "origin",
+        "tag": true,
+        "tagFormat": "${projectName}-${version}",
+        "changelog": true,
+        "changelogFile": "CHANGELOG.md",
+        "parallel": false
+      },
+      "dependsOn": ["build"]
+    },
+    "publish-docker": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["node ./tools/docker/publish_docker.js {projectName} true"],
+        "parallel": false
+      },
+      "dependsOn": ["versioning"]
+    },
+    "generate-docker-image": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["node ./tools/docker/publish_docker.js {projectName}"],
+        "parallel": false
+      },
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

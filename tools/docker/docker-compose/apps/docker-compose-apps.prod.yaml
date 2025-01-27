@@ -1,0 +1,46 @@
+services:
+  frontend:
+    container_name: frontend
+    image: argsoftware/nx-template:frontend-0.0.1
+    environment:
+      - PORT=80
+      - HOSTNAME=frontend
+    ports:
+      - 80:80
+    networks:
+      - nx-template
+    depends_on:
+      - client-api
+      - nx-template-webhook-api
+
+  client-api:
+    container_name: client-api
+    image: argsoftware/nx-template:client-api-0.0.1
+    env_file:
+      - path: ./env/.env.apps.common
+        required: true
+      - path: ./env/.env.apps.api
+        required: true
+    ports:
+      - 3000:3000
+    networks:
+      - nx-template
+
+  action-log-service:
+    container_name: action-log-service
+    image: argsoftware/nx-template:action-log-service-0.0.1
+    env_file:
+      - path: ./env/.env.apps.common
+        required: true
+      - path: ./env/.env.apps.action-log
+        required: true
+    ports:
+      - 3002:3002
+    networks:
+      - nx-template
+
+networks:
+  nx-template:
+    name: nx-template
+    driver: bridge
+    external: true

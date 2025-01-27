@@ -1,0 +1,47 @@
+services:
+  nx-template-front-end:
+    build:
+      context: ../../../../apps/frontend/
+      dockerfile: Dockerfile
+    environment:
+      - PORT=80
+    ports:
+      - 80:80
+    networks:
+      - nx-template
+    depends_on:
+      - client-api
+
+  client-api:
+    build:
+      context: ../../../../apps/client-api/
+      dockerfile: Dockerfile
+    env_file:
+      - path: ./env/.env.apps.common
+        required: true
+      - path: ./env/.env.apps.api
+        required: true
+    ports:
+      - 3000:3000
+    networks:
+      - nx-template
+
+  action-log-service:
+    build:
+      context: ../../../../apps/action-log-service/
+      dockerfile: Dockerfile
+    env_file:
+      - path: ./env/.env.apps.common
+        required: true
+      - path: ./env/.env.apps.action-log
+        required: true
+    ports:
+      - 3002:3002
+    networks:
+      - nx-template
+
+networks:
+  nx-template:
+    name: nx-template
+    driver: bridge
+    external: true

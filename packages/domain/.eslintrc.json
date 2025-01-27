@@ -1,0 +1,61 @@
+{
+  "root": true,
+  "extends": ["../../.eslintrc.base.json"],
+  "plugins": ["@typescript-eslint", "@nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "args": "after-used",
+            "ignoreRestSiblings": true
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/ban-types": [
+          "warn",
+          {
+            "types": {
+              "{}": {
+                "message": "Use more specific types like Record<string, unknown> instead of `{}`"
+              }
+            }
+          }
+        ],
+        "@typescript-eslint/no-empty-function": [
+          "warn",
+          {
+            "allow": ["constructors"]
+          }
+        ],
+        "@typescript-eslint/no-namespace": "off",
+        "no-console": "warn",
+        "prefer-const": "error",
+        "no-useless-constructor": "off"
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    }
+  ]
+}

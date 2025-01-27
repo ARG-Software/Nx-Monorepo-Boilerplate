@@ -1,0 +1,437 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/** Custom Fonts **/
+/* Inconsolata */
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('/fonts/Inconsolata-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* NunitoSans */
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/NunitoSans-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Rajdhani */
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/Rajdhani-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/Rajdhani-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/Rajdhani-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/Rajdhani-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/Rajdhani-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/** End Custom Fonts **/
+
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono',
+    'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono',
+    'Courier New', monospace;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+  --primary-glow: conic-gradient(
+    from 180deg at 50% 50%,
+    #16abff33 0deg,
+    #0885ff33 55deg,
+    #54d6ff33 120deg,
+    #0071ff33 160deg,
+    transparent 360deg
+  );
+  --secondary-glow: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+
+  --tile-start-rgb: 239, 245, 249;
+  --tile-end-rgb: 228, 232, 233;
+  --tile-border: conic-gradient(
+    #00000080,
+    #00000040,
+    #00000030,
+    #00000020,
+    #00000010,
+    #00000010,
+    #00000080
+  );
+
+  --callout-rgb: 238, 240, 241;
+  --callout-border-rgb: 172, 175, 176;
+  --card-rgb: 180, 185, 188;
+  --card-border-rgb: 131, 134, 135;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+
+    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+    --secondary-glow: linear-gradient(
+      to bottom right,
+      rgba(1, 65, 255, 0),
+      rgba(1, 65, 255, 0),
+      rgba(1, 65, 255, 0.3)
+    );
+
+    --tile-start-rgb: 2, 13, 46;
+    --tile-end-rgb: 2, 5, 19;
+    --tile-border: conic-gradient(
+      #ffffff80,
+      #ffffff40,
+      #ffffff30,
+      #ffffff20,
+      #ffffff10,
+      #ffffff10,
+      #ffffff80
+    );
+
+    --callout-rgb: 20, 20, 20;
+    --callout-border-rgb: 108, 108, 108;
+    --card-rgb: 100, 100, 100;
+    --card-border-rgb: 200, 200, 200;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  // background-color: black;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+//  custom scrollbar styles --------------->
+
+// ::-webkit-scrollbar {
+//   width: 20px;
+//   background-color: #000000;
+// }
+// ::-webkit-scrollbar-track {
+//   background-color: black;
+//   border: 2px solid #191932;
+//   border-radius: 20px;
+//   margin: 6px 0px;
+// }
+// ::-webkit-scrollbar-thumb {
+//   background-color: #191932;
+//   border-radius: 20px;
+//   border: 6px solid transparent;
+//   background-clip: content-box;
+// }
+
+.apiTableRow::-webkit-scrollbar {
+  width: 20px;
+  background-color: transparent;
+}
+.apiTableRow::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin: 6px 0px;
+}
+.apiTableRow::-webkit-scrollbar-thumb {
+  background-color: black;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+// scroll bar styles end here ---------------->
+
+// shadows ------------------------->
+.greenishShadow {
+  box-shadow: 0px 0px 12px 0px #1eebaa;
+}
+
+.grenishTextShadow {
+  text-shadow: -1px 8px 13px rgba(30, 235, 170, 0.71);
+}
+
+.dropDownShadow {
+  box-shadow: 5px 7px 36px 0px rgba(0, 0, 0, 0.5);
+}
+.myStrategiesIconShadow {
+  box-shadow: -2px 1px 8px -1px #15ffab;
+}
+.apiModalShadow {
+  box-shadow: 0px 4px 12px -3px rgba(255, 255, 255, 0.75);
+}
+// shadows end here ----------------------->
+
+// linear gradients ---------------------->
+.apiConnectedGradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #4dffdf 0%, #4da1ff 100%));
+}
+.spotApiGradient {
+  background: var(--purple-gradient, linear-gradient(265deg, #e323ff 0%, #7517f8 100%));
+}
+.orangeGradient {
+  background: var(--orange-gradient, linear-gradient(270deg, #ffd422 0.02%, #ff7d05 97.45%));
+}
+// linear gradients end here -------------------------->
+
+// ======> clip path for navibar ------------->
+.navibarShap {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 4% 100%, 0 55%);
+}
+
+@media screen and (max-width: 640px) {
+  .navibarShap {
+    -webkit-clip-path: none;
+  }
+}
+
+// clip path for left navigation ------------->
+.leftNavigationClipPath {
+  -webkit-clip-path: polygon(0 0, 100% 9%, 100% 100%, 0 89%);
+}
+
+// ==========> react flow chart styles
+.react-flow__edge-path {
+  stroke: white;
+  stroke-width: 1px !important;
+}
+.react-flow__pane {
+  top: 0% !important;
+}
+.react-flow__panel {
+  display: none;
+}
+
+// exchange colors ---------------------->
+.bybit-gradient {
+  background: var(--orange-gradient, linear-gradient(270deg, #ffd422 0.02%, #ff7d05 97.45%));
+}
+.binance-gradient {
+  background: var(--purple-gradient, linear-gradient(265deg, #e323ff 0%, #7517f8 100%));
+}
+.coinbase-gradient {
+  background: var(--purple-gradient, linear-gradient(265deg, #e323ff 0%, #7517f8 100%));
+}
+.kraken-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #4dffdf 0%, #4da1ff 100%));
+}
+
+// token colors 
+
+.btc-gradient {
+  background: var(--orange-gradient, linear-gradient(270deg, #ffd422 0.02%, #ff7d05 97.45%));
+}
+.sol-gradient {
+  background: var(--purple-gradient, linear-gradient(265deg, #e323ff 0%, #7517f8 100%));
+}
+.eth-gradient {
+  background: var(--purple-gradient, linear-gradient(265deg, #707070 0%, #5a5a5a 100%));
+}
+.usdt-gradient {
+  background: var(--purple-gradient, linear-gradient(265deg, #06f742 0%, #08cc32 100%));
+}
+.usdc-gradient {
+  background: var(--purple-gradient, linear-gradient(265deg, #001aff 0%, #162df7 100%));
+}
+.bnb-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #ffe603 0%, #c4b002 100%));
+}
+.bonk-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #ffaf03 0%, #d49100 100%));
+}
+.xrp-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #2e2e2e 0%, #464646 100%));
+}
+.avax-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #f13a3a 0%, #a83636 100%));
+}
+.shib-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #ff4d4d 0%, rgb(255, 119, 77) 100%));
+}
+.doge-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #ffc74d 0%, #e9d416 100%));
+}
+.dot-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #ff4da6 0%, #c03c7e 100%));
+}
+.link-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #2810fa 0%, #2710fa 100%));
+}
+.pepe-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #047e29 0%, #036922 100%));
+}
+.ltc-gradient {
+  background: var(--light-bruise-gradient, linear-gradient(270deg, #4d5fff 0%, #3e51ff 100%));
+}
+
