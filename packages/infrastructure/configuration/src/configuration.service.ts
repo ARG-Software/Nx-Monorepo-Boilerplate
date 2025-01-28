@@ -62,22 +62,10 @@ export class ConfigurationService {
 
   get logTo(): string {
     const logTo = this.get('LOG_TO');
-    if (!['console', 'kafka', 'loggly', 'errsole'].includes(logTo)) {
+    if (!['console', 'errsole'].includes(logTo)) {
       return 'console';
     }
     return logTo;
-  }
-
-  get logglyToken(): string {
-    return this.get('LOGGLY_TOKEN');
-  }
-
-  get logglySubdomain(): string {
-    return this.get('LOGGLY_SUBDOMAIN');
-  }
-
-  get logglyTags(): string {
-    return this.get('LOGGLY_TAGS');
   }
 
   get databasePort(): number {
