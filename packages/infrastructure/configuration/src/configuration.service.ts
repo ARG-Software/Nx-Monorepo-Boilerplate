@@ -68,6 +68,10 @@ export class ConfigurationService {
     return logTo;
   }
 
+  get logTag(): string {
+    return this.get('LOG_TAG');
+  }
+
   get databasePort(): number {
     return this.getNumber('DATABASE_PORT');
   }

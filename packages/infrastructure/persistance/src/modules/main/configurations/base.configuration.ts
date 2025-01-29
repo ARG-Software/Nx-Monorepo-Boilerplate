@@ -1,6 +1,6 @@
 import { EntitySchema } from '@mikro-orm/core';
 import { MainBaseEntity } from '@nx-template/domain';
-import { v4 } from 'uuid';
+import * as Crypto from 'crypto';
 
 export const mainBaseSchema = new EntitySchema<MainBaseEntity>({
   name: 'BaseEntity',
@@ -9,7 +9,7 @@ export const mainBaseSchema = new EntitySchema<MainBaseEntity>({
     id: {
       type: 'string',
       primary: true,
-      onCreate: () => v4(),
+      onCreate: () => Crypto.randomUUID(),
     },
     createdAt: {
       type: 'string',
