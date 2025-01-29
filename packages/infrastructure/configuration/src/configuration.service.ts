@@ -170,10 +170,6 @@ export class ConfigurationService {
     return this.getArray('IP_WHITELIST');
   }
 
-  get useTestNet(): boolean {
-    return this.getBoolean('TEST_NET');
-  }
-
   get environment(): string {
     return this.get('NODE_ENV');
   }
