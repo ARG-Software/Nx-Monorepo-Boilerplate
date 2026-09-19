@@ -12,7 +12,7 @@ const userValidateCode = async ({
   let payload;
   try {
     payload = JSON.stringify(validationCodeParameters);
-  } catch (error) {
+  } catch {
     throw new Error('Error validating code, please try again');
   }
 
@@ -26,7 +26,7 @@ const userValidateCode = async ({
       },
       body: payload,
     });
-  } catch (error) {
+  } catch {
     throw new Error('Error validating code, please try again');
   }
 
@@ -34,7 +34,7 @@ const userValidateCode = async ({
 
   try {
     data = await userValidationResponse.json();
-  } catch (error) {
+  } catch {
     throw new Error('Error validating code, please try again');
   }
 

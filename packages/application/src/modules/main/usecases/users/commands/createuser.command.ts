@@ -33,7 +33,7 @@ export class CreateUserCommandHandler
 
     try {
       existingUser = await this.userRepository.findByEmail(command.email);
-    } catch (err: any) {
+    } catch {
       const error = new InternalServerErrorException(
         'Error getting user by email'
       );

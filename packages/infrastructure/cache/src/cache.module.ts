@@ -7,7 +7,7 @@ import { ICache } from './cache.interface';
   imports: [
     CacheModule.register({
       isGlobal: true,
-      ttl: 60000, // seconds
+      ttl: 60000, // milliseconds
       max: 100, // maximum number of items in cache
     }),
   ],

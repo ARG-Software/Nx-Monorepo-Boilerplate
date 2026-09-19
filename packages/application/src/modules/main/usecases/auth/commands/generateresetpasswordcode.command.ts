@@ -30,7 +30,7 @@ export class GenerateResetPasswordCodeCommandHandler
 
     try {
       user = await this.userRepository.findByEmail(command.email);
-    } catch (err: any) {
+    } catch {
       const error = new InternalServerErrorException(
         'Error getting user by email'
       );
@@ -54,7 +54,7 @@ export class GenerateResetPasswordCodeCommandHandler
 
     try {
       await this.userRepository.update(user);
-    } catch (err: any) {
+    } catch {
       const error = new InternalServerErrorException('Error generating code');
       this.logger.error(`Error saving user`, error);
       return Result.error(error);

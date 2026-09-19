@@ -1,4 +1,4 @@
-import { ActionLog } from '@nx-template/domain';
+import { ActionLog } from '../entities/actionlog';
 
 export interface IActionLogRepository {
   create(actionLog: ActionLog): Promise<string>;

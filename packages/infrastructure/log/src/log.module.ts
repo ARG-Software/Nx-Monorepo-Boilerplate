@@ -1,7 +1,6 @@
 import { Global, Module, Scope } from '@nestjs/common';
 import { ILogger } from './log.interface';
 import { LogService } from './services/log.service';
-import { MessagingModule } from '@nx-template/messaging';
 import { RequestContextModule } from 'nestjs-request-context';
 import { CorrelationIdExpressMiddleware } from './middleware/corelationexpress.middleware';
 import { ErrsoleService } from './services/errsole.service';
@@ -9,7 +8,7 @@ import { ConfigurationService } from '@nx-template/configuration';
 
 @Global()
 @Module({
-  imports: [MessagingModule, RequestContextModule],
+  imports: [RequestContextModule],
   providers: [
     {
       provide: ILogger,

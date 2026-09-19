@@ -14,7 +14,7 @@ const resetUserPassword = async ({
 
   try {
     payload = JSON.stringify(resetPasswordParameters);
-  } catch (error) {
+  } catch {
     throw new Error('Error changing password, please try again');
   }
 
@@ -25,7 +25,7 @@ const resetUserPassword = async ({
       'Content-Type': 'application/json',
     },
     body: payload,
-  }).catch(_ => {
+  }).catch(() => {
     throw new Error('Error changing password, please try again');
   });
 
@@ -33,7 +33,7 @@ const resetUserPassword = async ({
 
   try {
     data = await changeUserPasswordResponse.json();
-  } catch (error) {
+  } catch {
     throw new Error('Error changing password, please try again');
   }
 
@@ -44,7 +44,7 @@ const resetUserPassword = async ({
   try {
     const result = data;
     return result;
-  } catch (error) {
+  } catch {
     throw new Error('Error changing password, please try again');
   }
 };

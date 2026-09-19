@@ -38,7 +38,7 @@ export class KafkajsConsumer implements IConsumer {
     await this.connect();
     await this.consumer.subscribe({ topic: this.topic, fromBeginning: true });
     await this.consumer.run({
-      eachMessage: async ({ message, partition, heartbeat }) => {
+      eachMessage: async ({ message, heartbeat }) => {
         const messageString = message.value?.toString() || '';
         const messageIncoming = JSON.parse(messageString);
         try {
