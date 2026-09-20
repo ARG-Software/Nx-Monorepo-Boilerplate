@@ -14,7 +14,7 @@ const userRegistration = async ({
 
   try {
     payload = JSON.stringify(registrationParameters);
-  } catch (error) {
+  } catch {
     throw new Error('Error registering, please try again');
   }
 
@@ -25,7 +25,7 @@ const userRegistration = async ({
       'Content-Type': 'application/json',
     },
     body: payload,
-  }).catch(_ => {
+  }).catch(() => {
     throw new Error('Error registering, please try again');
   });
 
@@ -33,7 +33,7 @@ const userRegistration = async ({
 
   try {
     data = await userRegistrationResponse.json();
-  } catch (error) {
+  } catch {
     throw new Error('Error registering, please try again');
   }
 
@@ -44,7 +44,7 @@ const userRegistration = async ({
   try {
     const result: RegisteredUserResponseDto = data;
     return result;
-  } catch (error) {
+  } catch {
     throw new Error('Error registering, please try again');
   }
 };

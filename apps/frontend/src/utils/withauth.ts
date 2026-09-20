@@ -1,6 +1,5 @@
 import { parse } from 'cookie';
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '@/constants';
 
 const withAuth = gssp => async context => {
   const { resolvedUrl, req } = context;
@@ -14,7 +13,12 @@ const withAuth = gssp => async context => {
 
   if (token) {
     try {
-      userData = jwt.verify(token, JWT_SECRET);
+      const jwtSecret = process.env.JWT_SECRET;
+      if (!jwtSecret) {
+        throw new Error('JWT_SECRET is required');
+      }
+
+      userData = jwt.verify(token, jwtSecret);
       isAuthenticated = true;
     } catch (error) {
       console.error('Token verification failed:', error);

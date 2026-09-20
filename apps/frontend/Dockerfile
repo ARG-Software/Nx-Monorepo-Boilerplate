@@ -1,23 +1,22 @@
-FROM docker.io/node:lts-alpine
+FROM docker.io/node:22.12.0-alpine
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV HOSTNAME=0.0.0.0
 ARG PORT=80
-ENV PORT=$PORT
+ENV PORT=${PORT}
 
 WORKDIR /usr/src/app
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs \
+  && adduser --system --uid 1001 --ingroup nodejs nextjs
 
-COPY --chown=nextjs:nodejs dist/production/ ./
-COPY --chown=nextjs:nodejs dist/production/.next/static ./.next/standalone/apps/frontend/dist/production/.next/static
-COPY --chown=nextjs:nodejs dist/production/public ./.next/standalone/apps/frontend/public
-
-RUN chown nextjs:nodejs ./
+COPY --chown=nextjs:nodejs dist/production/standalone ./
+COPY --chown=nextjs:nodejs dist/production/static ./apps/frontend/dist/production/static
+COPY --chown=nextjs:nodejs public ./apps/frontend/public
 
 USER nextjs
 
 EXPOSE ${PORT}
 
-CMD HOSTNAME=0.0.0.0 node ./.next/standalone/apps/frontend/server.js
+CMD ["node", "apps/frontend/server.js"]

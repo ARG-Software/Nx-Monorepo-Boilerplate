@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!dist/
+!dist/production/
+!dist/production/**
+!public/
+!public/**

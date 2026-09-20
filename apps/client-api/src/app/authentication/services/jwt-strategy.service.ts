@@ -1,7 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
-import { Request } from 'express';
+import type { Request } from 'express';
 import { User } from '@nx-template/domain';
 import { TokenPayload } from './jwt-strategy.interfaces';
 import { GetUserByIdQuery, IBus } from '@nx-template/application';
@@ -24,7 +24,7 @@ export class JwtStrategyService extends PassportStrategy(Strategy) {
               ?.split('=')[1];
 
             return token || null;
-          } catch (error) {
+          } catch {
             return null;
           }
         },

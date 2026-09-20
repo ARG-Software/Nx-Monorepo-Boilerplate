@@ -1,11 +1,18 @@
+# From this directory, copy .env.infra.example to .env.infra, set its secrets, then run:
+# docker compose --env-file .env.infra -f docker-compose-infra.yaml up -d
 services:
   nx-template-redis:
     container_name: nx-template-redis
     image: redis:latest
-    command: redis-server
+    command:
+      - redis-server
+      - --appendonly
+      - 'yes'
+      - --requirepass
+      - ${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env.infra}
     restart: always
     ports:
-      - 6379:6379
+      - '127.0.0.1:6379:6379'
     volumes:
       - redis-data:/data
     networks:
@@ -18,13 +25,13 @@ services:
     env_file:
       - .env.infra
     ports:
-      - 5432:5432
+      - '127.0.0.1:5432:5432'
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME:?Set DATABASE_NAME in .env.infra}
+      POSTGRES_USER: ${DATABASE_USER:?Set DATABASE_USER in .env.infra}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Set DATABASE_PASSWORD in .env.infra}
     volumes:
-      - database-data:/data
+      - database-data:/var/lib/postgresql/data
     networks:
       - nx-template
 
@@ -33,12 +40,14 @@ services:
     image: dpage/pgadmin4
     restart: always
     ports:
-      - 5050:80
+      - '127.0.0.1:5050:80'
     env_file:
       - .env.infra
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:?Set PGADMIN_EMAIL in .env.infra}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?Set PGADMIN_PASSWORD in .env.infra}
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
     networks:
       - nx-template
 
@@ -46,7 +55,7 @@ services:
     container_name: nx-template-zookeeper
     image: confluentinc/cp-zookeeper:7.6.1
     ports:
-      - '2181:2181'
+      - '127.0.0.1:2181:2181'
     restart: always
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -56,8 +65,8 @@ services:
       timeout: 10s
       retries: 5
     volumes:
-      - zookeeper-data:/data
-      - zookeeper-log:/data
+      - zookeeper-data:/var/lib/zookeeper/data
+      - zookeeper-log:/var/lib/zookeeper/log
     networks:
       - nx-template
 
@@ -65,7 +74,7 @@ services:
     container_name: nx-template-kafka
     image: confluentinc/cp-kafka:7.6.1
     ports:
-      - '9092:9092'
+      - '127.0.0.1:9092:9092'
     restart: always
     environment:
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://nx-template-kafka:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
@@ -84,7 +93,7 @@ services:
       nx-template-zookeeper:
         condition: service_healthy
     volumes:
-      - kafka-data:/data
+      - kafka-data:/var/lib/kafka/data
     networks:
       - nx-template
 
@@ -97,7 +106,7 @@ services:
     environment:
       - KAFKA_BROKERS=nx-template-kafka:19092
     ports:
-      - 8080:8080
+      - '127.0.0.1:8080:8080'
     networks:
       - nx-template
 
@@ -108,13 +117,13 @@ services:
     env_file:
       - .env.infra
     ports:
-      - ${LOGS_DATABASE_PORT}:5432
+      - '127.0.0.1:${LOGS_DATABASE_PORT:?Set LOGS_DATABASE_PORT in .env.infra}:5432'
     environment:
-      POSTGRES_DB: ${LOGS_DATABASE_NAME}
-      POSTGRES_USER: ${LOGS_DATABASE_USER}
-      POSTGRES_PASSWORD: ${LOGS_DATABASE_PASSWORD}
+      POSTGRES_DB: ${LOGS_DATABASE_NAME:?Set LOGS_DATABASE_NAME in .env.infra}
+      POSTGRES_USER: ${LOGS_DATABASE_USER:?Set LOGS_DATABASE_USER in .env.infra}
+      POSTGRES_PASSWORD: ${LOGS_DATABASE_PASSWORD:?Set LOGS_DATABASE_PASSWORD in .env.infra}
     volumes:
-      - logs-data:/data
+      - logs-data:/var/lib/postgresql/data
     networks:
       - nx-template
 
@@ -124,38 +133,9 @@ networks:
     driver: bridge
 volumes:
   zookeeper-data:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ${VOLUME_DEVICE_PATH}/zookeeper-data
   zookeeper-log:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ${VOLUME_DEVICE_PATH}/zookeeper-log
   kafka-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${VOLUME_DEVICE_PATH}/kafka-data
   redis-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${VOLUME_DEVICE_PATH}/redis-data
   database-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${VOLUME_DEVICE_PATH}/database-data
   logs-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${VOLUME_DEVICE_PATH}/logs-data
+  pgadmin-data:

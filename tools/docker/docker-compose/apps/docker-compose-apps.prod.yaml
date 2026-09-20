@@ -1,41 +1,40 @@
 services:
   frontend:
     container_name: frontend
-    image: argsoftware/nx-template:frontend-0.0.1
+    image: ${DOCKER_IMAGE_REPOSITORY:-argsoftware/nx-template}:${FRONTEND_IMAGE_TAG:-frontend-0.0.21}
     environment:
       - PORT=80
-      - HOSTNAME=frontend
+      - HOSTNAME=0.0.0.0
     ports:
-      - 80:80
+      - '80:80'
     networks:
       - nx-template
     depends_on:
       - client-api
-      - nx-template-webhook-api
 
   client-api:
     container_name: client-api
-    image: argsoftware/nx-template:client-api-0.0.1
+    image: ${DOCKER_IMAGE_REPOSITORY:-argsoftware/nx-template}:${CLIENT_API_IMAGE_TAG:-client-api-0.0.20}
     env_file:
       - path: ./env/.env.apps.common
         required: true
       - path: ./env/.env.apps.api
         required: true
     ports:
-      - 3000:3000
+      - '3333:3333'
     networks:
       - nx-template
 
   action-log-service:
     container_name: action-log-service
-    image: argsoftware/nx-template:action-log-service-0.0.1
+    image: ${DOCKER_IMAGE_REPOSITORY:-argsoftware/nx-template}:${ACTION_LOG_IMAGE_TAG:-action-log-service-0.0.8}
     env_file:
       - path: ./env/.env.apps.common
         required: true
       - path: ./env/.env.apps.action-log
         required: true
     ports:
-      - 3002:3002
+      - '3334:3334'
     networks:
       - nx-template
 
