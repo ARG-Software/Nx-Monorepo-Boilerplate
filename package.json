@@ -133,7 +133,7 @@
     "jest": "30.3.0",
     "jest-environment-jsdom": "30.3.0",
     "jest-environment-node": "30.3.0",
-    "jest-util": "30.3.0",
+    "jest-util": "30.5.1",
     "nx": "23.2.1",
     "postcss": "^8.5.1",
     "prettier": "3.9.8",
