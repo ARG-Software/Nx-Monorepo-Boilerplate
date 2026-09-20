@@ -3,8 +3,7 @@ WORKDIR /usr/src/app
 
 COPY dist/production/package.json ./
 COPY dist/production/pnpm-lock.yaml ./
-RUN corepack enable \
-  && corepack prepare pnpm@9.15.5 --activate \
+RUN npm install --global pnpm@9.15.5 \
   && pnpm install --prod --frozen-lockfile
 
 FROM docker.io/node:22.12.0-alpine AS runner

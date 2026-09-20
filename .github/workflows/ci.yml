@@ -46,4 +46,4 @@ jobs:
           docker run --rm
           -v "${{ github.workspace }}:/repo"
           ghcr.io/gitleaks/gitleaks:v8.28.0
-          detect --source=/repo --redact --no-banner
+          detect --source=/repo --no-git --redact --no-banner
