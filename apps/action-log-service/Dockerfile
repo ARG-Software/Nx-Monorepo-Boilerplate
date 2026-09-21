@@ -1,4 +1,4 @@
-FROM docker.io/node:22.12.0-alpine AS deps
+FROM docker.io/node:26.9.0-alpine AS deps
 WORKDIR /usr/src/app
 
 COPY dist/production/package.json ./
@@ -6,7 +6,7 @@ COPY dist/production/pnpm-lock.yaml ./
 RUN npm install --global pnpm@9.15.5 \
   && pnpm install --prod --frozen-lockfile
 
-FROM docker.io/node:22.12.0-alpine AS runner
+FROM docker.io/node:26.9.0-alpine AS runner
 
 ENV NODE_ENV=production
 ARG PORT=3002
