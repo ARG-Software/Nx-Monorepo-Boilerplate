@@ -1,4 +1,4 @@
-FROM docker.io/node:22.12.0-alpine
+FROM docker.io/node:26.9.0-alpine
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
