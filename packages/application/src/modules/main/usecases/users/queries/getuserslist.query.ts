@@ -16,7 +16,7 @@ export class GetUsersListQueryHandler
     this.logger.createChildLogger(this.constructor.name);
   }
 
-  async execute(query: GetUsersListQuery): Promise<Result<Partial<User>[]>> {
+  async execute(_query: GetUsersListQuery): Promise<Result<Partial<User>[]>> {
     try {
       const users = await this.userRepository.getAll();
 

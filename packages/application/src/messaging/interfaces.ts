@@ -21,5 +21,5 @@ export interface IMessage {
   value: Buffer | string;
   partition?: number;
   headers?: Buffer | string | (Buffer | string)[] | undefined;
-  timestamp?: BigInt;
+  timestamp?: bigint;
 }

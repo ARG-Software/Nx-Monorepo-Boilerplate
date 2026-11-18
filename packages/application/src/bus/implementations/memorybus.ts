@@ -9,10 +9,10 @@ export class MemoryBus implements IBus {
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus
   ) {}
-  async commandCreate<T>(command: ICommand): Promise<Result<string>> {
+  async commandCreate<_T>(command: ICommand): Promise<Result<string>> {
     return await this.commandBus.execute(command);
   }
-  async commandUpdate<T>(command: ICommand): Promise<Result<boolean>> {
+  async commandUpdate<_T>(command: ICommand): Promise<Result<boolean>> {
     return await this.commandBus.execute(command);
   }
 

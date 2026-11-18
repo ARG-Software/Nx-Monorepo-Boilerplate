@@ -1,7 +1,7 @@
 import { Controller, Get, Inject, Res, UseGuards } from '@nestjs/common';
 import { ILogger } from '@nx-template/log';
 import { GetUsersListQuery, IBus } from '@nx-template/application';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { User } from '@nx-template/domain';
 import JwtAuthenticationGuard from '../authentication/guards/jwt.authentication.guard';
 import { ApiTags } from '@nestjs/swagger';

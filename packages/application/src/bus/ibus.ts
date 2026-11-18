@@ -7,14 +7,14 @@ export interface IBus {
    * @param command
    * @returns Promise<Result<boolean | string>> - boolean for update, string for create
    */
-  commandCreate<T>(command: ICommand): Promise<Result<string>>;
+  commandCreate<_T>(command: ICommand): Promise<Result<string>>;
 
   /**
    * Send a command to the bus to update
    * @param command
    * @returns Promise<Result<boolean>>
    */
-  commandUpdate<T>(command: ICommand): Promise<Result<boolean>>;
+  commandUpdate<_T>(command: ICommand): Promise<Result<boolean>>;
 
   /**
    * Send a query to the bus

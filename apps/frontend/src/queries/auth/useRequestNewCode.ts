@@ -15,7 +15,7 @@ const generateNewCode = async ({ email }: { email: string }): Promise<boolean> =
         'Content-Type': 'application/json',
       },
     });
-  } catch (error) {
+  } catch {
     throw new Error('Error generating new code, please try again');
   }
 
@@ -23,7 +23,7 @@ const generateNewCode = async ({ email }: { email: string }): Promise<boolean> =
 
   try {
     data = await generateCodeResponse.text();
-  } catch (error) {
+  } catch {
     throw new Error('Error generating new code, please try again');
   }
 

@@ -6,6 +6,7 @@ import JwtAuthenticationGuard from './guards/jwt.authentication.guard';
 import { ConfigurationService } from '@nx-template/configuration';
 import { EmailModule } from '@nx-template/email';
 import { MessagingModule } from '@nx-template/messaging';
+import type { SignOptions } from 'jsonwebtoken';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { MessagingModule } from '@nx-template/messaging';
       useFactory: async (configService: ConfigurationService) => ({
         secret: configService.jwtSecret,
         signOptions: {
-          expiresIn: configService.jwtExpirationTime,
+          expiresIn: configService.jwtExpirationTime as SignOptions['expiresIn'],
         },
       }),
       inject: [ConfigurationService],

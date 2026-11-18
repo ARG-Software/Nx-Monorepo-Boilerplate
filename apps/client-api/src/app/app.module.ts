@@ -34,6 +34,6 @@ import { UserModule } from './users/user.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(CorrelationIdExpressMiddleware).forRoutes('*');
+    consumer.apply(CorrelationIdExpressMiddleware).forRoutes('{*splat}');
   }
 }

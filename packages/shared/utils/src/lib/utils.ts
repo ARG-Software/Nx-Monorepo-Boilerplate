@@ -30,9 +30,9 @@ export function getPairSymbol(
 }
 
 export const replaceHalfWithStars = (inputString: string) => {
-  let midpoint = Math.ceil(inputString.length / 2);
+  const midpoint = Math.ceil(inputString.length / 2);
 
-  let replacedString = inputString.substring(0, midpoint) + '*'.repeat(inputString.length - midpoint);
+  const replacedString = inputString.substring(0, midpoint) + '*'.repeat(inputString.length - midpoint);
 
   return replacedString;
 }

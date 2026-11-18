@@ -1,13 +1,10 @@
-import { EntityManager, EntityRepository, t } from '@mikro-orm/postgresql';
+import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { Inject, Injectable } from '@nestjs/common';
 import {
   IUserRepository,
   UnableToAddUserError,
-  UnableToDeleteUserError,
-  UnableToFindUserByEmailAndPasswordError,
   UnableToFindUserByEmailError,
   UnableToFindUserByIdError,
-  UnableToFindUserByMintAddressError,
   UnableToGetAllUsersError,
   UnableToUpdateUserError,
   User,
@@ -63,7 +60,7 @@ export class UserRepository implements IUserRepository {
 
   async add(user: User): Promise<string> {
     try {
-      let newUser = this._repository.create(user);
+      const newUser = this._repository.create(user);
       await this._repository.getEntityManager().flush();
       return newUser.id;
     } catch (error: any) {

@@ -15,7 +15,7 @@ const generateNewResetPasswordCode = async ({ email }: { email: string }): Promi
         'Content-Type': 'application/json',
       },
     });
-  } catch (error) {
+  } catch {
     throw new Error('Error generating reset password code, please try again');
   }
 
@@ -23,7 +23,7 @@ const generateNewResetPasswordCode = async ({ email }: { email: string }): Promi
 
   try {
     data = await generateResetPasswordCodeResponse.json();
-  } catch (error) {
+  } catch {
     throw new Error('Error generating reset password code, please try again');
   }
 

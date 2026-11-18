@@ -14,7 +14,7 @@ export class Result<T> {
   }
 
   static error<T>(error: Error): Result<T> {
-    var newError = error;
+    const newError = error;
     return new Result<T>(false, undefined, newError);
   }
 

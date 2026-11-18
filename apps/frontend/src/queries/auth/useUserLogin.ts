@@ -14,7 +14,7 @@ const userLogin = async ({
 
   try {
     payload = JSON.stringify(authenticationParameters);
-  } catch (error) {
+  } catch {
     throw new Error('Error logging in, please try again');
   }
 
@@ -31,7 +31,7 @@ const userLogin = async ({
 
       body: payload,
     });
-  } catch (error) {
+  } catch {
     throw new Error('Error logging in, please try again');
   }
 
@@ -39,7 +39,7 @@ const userLogin = async ({
 
   try {
     data = await userLoginResponse.json();
-  } catch (error) {
+  } catch {
     throw new Error('Error logging in, please try again');
   }
 
@@ -50,7 +50,7 @@ const userLogin = async ({
   try {
     const result: AuthenticatedUserResponseDto = data;
     return result;
-  } catch (error) {
+  } catch {
     throw new Error('Error logging in, please try again');
   }
 };

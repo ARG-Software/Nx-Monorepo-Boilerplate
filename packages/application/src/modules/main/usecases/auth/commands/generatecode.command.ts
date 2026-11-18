@@ -28,7 +28,7 @@ export class GenerateCodeCommandHandler
 
     try {
       user = await this.userRepository.findByEmail(command.email);
-    } catch (err: any) {
+    } catch {
       const error = new InternalServerErrorException(
         'Error getting user by email'
       );
@@ -47,7 +47,7 @@ export class GenerateCodeCommandHandler
 
     try {
       await this.userRepository.update(user);
-    } catch (err: any) {
+    } catch {
       const error = new InternalServerErrorException('Error saving user');
       this.logger.error(`Error saving user`, error);
       return Result.error(error);

@@ -10,7 +10,7 @@ import {
   Param,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { Response } from 'express';
+import type { Response } from 'express';
 import {
   ConfirmCodeCommand,
   CreateActionLogMessage,
@@ -350,7 +350,7 @@ export class AuthenticationController {
     try {
       value = parseInt(duration);
       unit = duration.slice(-1);
-    } catch (error) {
+    } catch {
       throw new Error('Invalid duration format');
     }
 

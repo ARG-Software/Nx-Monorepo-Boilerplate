@@ -40,7 +40,7 @@ export abstract class LogBaseService {
       winston.format.cli(),
       winston.format.colorize(),
       winston.format.printf(({ level, message, ...meta }) => {
-        const tag = `[${this.configService.logglyTags}]`;
+        const tag = `[${this.configService.logTag}]`;
         return `${tag} ${level}: ${message} ${JSON.stringify(meta)}`;
       })
     );
@@ -50,7 +50,7 @@ export abstract class LogBaseService {
   protected get winstonErrsoleFormat() {
     return winston.format.combine(
       winston.format((info) => {
-        info['appName'] = this.configService.logglyTags;
+        info['appName'] = this.configService.logTag;
         return info;
       })(),
       winston.format.json()

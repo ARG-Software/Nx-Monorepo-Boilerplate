@@ -35,7 +35,7 @@ export class CreateActionLogCommandHandler
 
     try {
       existingUser = await this.userRepository.findById(command.userId);
-    } catch (err: any) {
+    } catch {
       const error = new InternalServerErrorException(
         'Error getting user by id'
       );

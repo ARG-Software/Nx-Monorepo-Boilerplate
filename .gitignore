@@ -51,15 +51,15 @@ docker-data
 .nx
 
 # Environments
-.env
+.env*
+!.env*.example
 
 dist
 
 certificates
 
 tools/docker/docker-compose/infra/redis-data/dump.rdb
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
 
-
-# Environment
-
-.env.build.production
+.claude/worktrees
