@@ -43,6 +43,11 @@ export class ConfigurationService {
     return parsedValue;
   }
 
+  private getOptional(key: string): string | undefined {
+    const value = process.env[key] ?? this.configService.get<string>(key);
+    return value ? value : undefined;
+  }
+
   // Typed getters for each configuration property
   get jwtSecret(): string {
     return this.get('JWT_SECRET');
@@ -158,12 +163,16 @@ export class ConfigurationService {
     return this.getNumber('REDIS_PORT');
   }
 
-  get redisPassword(): string {
-    return this.get('REDIS_PASSWORD');
+  // Optional: Redis without authentication is valid (e.g. local or CI).
+  get redisPassword(): string | undefined {
+    return this.getOptional('REDIS_PASSWORD');
   }
 
+  // Optional: defaults to Redis database 0.
   get redisDatabase(): number {
-    return this.getNumber('REDIS_DATABASE');
+    return this.getOptional('REDIS_DATABASE') === undefined
+      ? 0
+      : this.getNumber('REDIS_DATABASE');
   }
 
   get ipWhitelist(): string[] {
