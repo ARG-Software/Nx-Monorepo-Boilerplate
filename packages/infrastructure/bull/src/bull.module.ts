@@ -14,6 +14,8 @@ import {
         redis: {
           host: configService.redisHost,
           port: configService.redisPort,
+          password: configService.redisPassword,
+          db: configService.redisDatabase,
           retryStrategy: (times: number) => {
             // Retry strategy: throw an error after 3 attempts
             if (times >= 3) {
