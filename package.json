@@ -130,7 +130,7 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "filemanager-webpack-plugin": "^8.0.0",
     "globals": "17.12.0",
-    "jest": "30.3.0",
+    "jest": "30.5.2",
     "jest-environment-jsdom": "30.3.0",
     "jest-environment-node": "30.3.0",
     "jest-util": "30.5.1",
